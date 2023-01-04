@@ -1,15 +1,30 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app1 = express();
+const app2 = express();
 
-app.get('/', (req, res) => {
+const port1 = 3000;
+const port2 = 8080;
+
+app1.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.post('/json', (req, res) => {
+app1.post('/json', (req, res) => {
     res.json({status:"200",message:"OK",data:null,time:"2022-11-29T16:53:38.649015",success:true})
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+app1.get('/json', (req, res) => {
+    res.json({status:"200",message:"OK",data:null,time:"2022-11-29T16:53:38.649015",success:true})
+})
+
+app2.get('/EXT', (req, res) => {
+    res.send("Success!!!");
+})
+
+app1.listen(port1, () => {
+    console.log(`App1 listening on port ${port1}`)
+})
+
+app2.listen(port2, () => {
+    console.log(`App2 listening on port ${port2}`)
 })
