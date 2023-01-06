@@ -14,11 +14,22 @@ app1.post('/json', (req, res) => {
 })
 
 app1.get('/json', (req, res) => {
-    res.json({status:"200",message:"OK",data:null,time:"2022-11-29T16:53:38.649015",success:true})
+    console.log(JSON.stringify(req.headers));
+    res.set("apiKey1", "abc");
+    res.header("apiKey2", "abc");
+    res.set({
+        "apiKey3": "abc",
+        "apiKey4": "abc"
+    });
+    res.json({status:"200",message:"OK",data:null,time:"2022-11-29T16:53:38.649015",success:true});
 })
 
 app2.get('/EXT', (req, res) => {
     res.send("Success!!!");
+})
+
+app2.get('/EXT/*', (req, res) => {
+    res.send("Success HI!!!");
 })
 
 app1.listen(port1, () => {
