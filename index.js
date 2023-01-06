@@ -1,6 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const app1 = express();
 const app2 = express();
+
+app1.use(cors());
+app2.use(cors());
+
+var morgan  = require('morgan');
+app1.use(morgan('combined'));
+app2.use(morgan('combined'));
 
 const port1 = 3000;
 const port2 = 8080;
